@@ -1,21 +1,26 @@
 package com.example.folha.Entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-//@EntityScan
-//@Entity
+
+@Entity
 public class Momento implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private LocalDateTime dataHora;
 
-    public Momento(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    public Momento() {
     }
+
+    private LocalDateTime dataHora;
 
     public Long getId() {
         return id;

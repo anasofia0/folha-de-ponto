@@ -1,31 +1,28 @@
 package com.example.folha.Entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
-//@Entity
-//@EntityScan
+@Entity
 public class Relatorio implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String mes;
     private String horasTrabalhadas;
     private String horasExcedentes;
     private String horasDevidas;
+
+    @ManyToOne
     private Registro registro;
+    @ManyToOne
     private Alocacao alocacao;
 
-    public Relatorio(String mes, String horasTrabalhadas, String horasExcedentes, String horasDevidas, Registro registro, Alocacao alocacao) {
-        this.mes = mes;
-        this.horasTrabalhadas = horasTrabalhadas;
-        this.horasExcedentes = horasExcedentes;
-        this.horasDevidas = horasDevidas;
-        this.registro = registro;
-        this.alocacao = alocacao;
+    public Relatorio() {
     }
 
     public String getMes() {

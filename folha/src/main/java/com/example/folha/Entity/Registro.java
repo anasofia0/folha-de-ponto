@@ -1,24 +1,34 @@
 package com.example.folha.Entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
-import java.sql.Array;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
+@Entity
 public class Registro implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDate dia;
-    private ArrayList<String> horarios;
+//    private String[] horarios;
+//    private ArrayList<String> horarios;
 
 
-    public Registro(LocalDate dia, ArrayList horarios) {
-        this.dia = dia;
-        this.horarios = horarios;
+    public Registro() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDate getDia() {
@@ -29,11 +39,4 @@ public class Registro implements Serializable {
         this.dia = dia;
     }
 
-    public ArrayList getHorarios() {
-        return horarios;
-    }
-
-    public void setHorarios(ArrayList horarios) {
-        this.horarios = horarios;
-    }
 }
