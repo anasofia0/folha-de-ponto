@@ -1,10 +1,6 @@
-package com.example.folha.DTO;
-
-import com.example.folha.Entity.Alocacao;
-import com.example.folha.Entity.Registro;
+package com.example.folha.dto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class RelatorioDTO {

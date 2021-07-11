@@ -1,4 +1,4 @@
-package com.example.folha.Entity;
+package com.example.folha.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,9 +21,6 @@ public class Relatorio implements Serializable {
     private Registro registro;
     @ManyToOne
     private Alocacao alocacao;
-
-    public Relatorio() {
-    }
 
     public String getMes() {
         return mes;

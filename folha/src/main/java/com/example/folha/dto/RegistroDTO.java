@@ -1,15 +1,18 @@
-package com.example.folha.DTO;
+package com.example.folha.dto;
+
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RegistroDTO {
 
     private Long id;
     private LocalDate dia;
-    private ArrayList horarios;
+    private List<String> horarios;
 
-    public RegistroDTO(LocalDate dia, ArrayList horarios) {
+    public RegistroDTO(LocalDate dia, List<String> horarios) {
         this.dia = dia;
         this.horarios = horarios;
     }
@@ -30,7 +33,7 @@ public class RegistroDTO {
         this.dia = dia;
     }
 
-    public ArrayList getHorarios() {
+    public List getHorarios() {
         return horarios;
     }
 

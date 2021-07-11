@@ -15,11 +15,27 @@ services:
       - sonarqube_data:/opt/sonarqube/data
       - sonarqube_extensions:/opt/sonarqube/extensions
 
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "testebanco"
+      MYSQL_DATABASE: "folhaPonto"
+    expose:
+      - 3306
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - my-db:/var/lib/mysql
+    networks:
+      - mysql-compose-network
+
 networks:
   sonarnet:
+  mysql-compose-network:
 
 volumes:
   sonarqube_bundled-plugins:
   sonarqube_conf:
   sonarqube_data:
   sonarqube_extensions:
+  my-db:

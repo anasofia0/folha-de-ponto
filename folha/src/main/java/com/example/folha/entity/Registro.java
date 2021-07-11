@@ -1,26 +1,24 @@
-package com.example.folha.Entity;
+package com.example.folha.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Entity
-public class Momento implements Serializable {
+public class Registro implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Momento() {
-    }
-
-    private LocalDateTime dataHora;
+    private LocalDate dia;
+//    private String[] horariosa;
+//    private ArrayList<String> horariosb;
 
     public Long getId() {
         return id;
@@ -30,11 +28,12 @@ public class Momento implements Serializable {
         this.id = id;
     }
 
-    public LocalDateTime getDataHora() {
-        return dataHora;
+    public LocalDate getDia() {
+        return dia;
     }
 
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
+    public void setDia(LocalDate dia) {
+        this.dia = dia;
     }
+
 }
