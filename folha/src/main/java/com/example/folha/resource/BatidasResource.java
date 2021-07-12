@@ -1,13 +1,17 @@
 package com.example.folha.resource;
 
 
+import com.example.folha.dto.MomentoDTO;
 import com.example.folha.entity.Momento;
 import com.example.folha.service.BatidasService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 
 @RestController
@@ -21,9 +25,8 @@ public class BatidasResource {
     }
 
     @PostMapping
-    public ResponseEntity<Momento> criarBatida(@RequestBody Momento momento) {
-        Momento momentoCriado = this.batidasService.criarMomento(momento);
-//       return ResponseEntity.status(HttpStatus.CREATED).build();
-        return ResponseEntity.ok(momentoCriado);
+    public ResponseEntity<Momento>criarBatida(@Valid @RequestBody Momento momento) {
+        this.batidasService.criarMomento(momento);
+       return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

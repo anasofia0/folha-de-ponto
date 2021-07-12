@@ -1,20 +1,21 @@
 package com.example.folha.dto;
 
-import java.time.LocalDate;
+
+import com.example.folha.entity.Momento;
 
 public class MomentoDTO {
 
-    private LocalDate dataHora;
+    private String dataHora;
 
-    public MomentoDTO(LocalDate dataHora) {
+    public MomentoDTO(String dataHora) {
         this.dataHora = dataHora;
     }
 
-    public LocalDate getDataHora() {
+    public String getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(LocalDate dataHora) {
+    public void setDataHora(String dataHora) {
         this.dataHora = dataHora;
     }
 }

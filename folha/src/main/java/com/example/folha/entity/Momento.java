@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 
 @Entity
@@ -17,7 +16,7 @@ public class Momento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime dataHora;
+    private String dataHora;
 
     public Long getId() {
         return id;
@@ -27,11 +26,11 @@ public class Momento implements Serializable {
         this.id = id;
     }
 
-    public LocalDateTime getDataHora() {
+    public String getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(LocalDateTime dataHora) {
+    public void setDataHora(String dataHora) {
         this.dataHora = dataHora;
     }
 }
