@@ -2,16 +2,20 @@ plugins {
 	id 'org.springframework.boot' version '2.5.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
-	id "org.sonarqube" version "2.7"
+	id "org.sonarqube" version "3.1.1"
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+
 repositories {
 	mavenCentral()
 }
+
+apply from: "$rootDir/plugins/jacoco.gradle"
+apply from: "$rootDir/plugins/sonarqube.gradle"
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
@@ -20,10 +24,15 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.mockito:mockito-core:3.11.2'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
 test {
 	useJUnitPlatform()
 }
+
+
 
 

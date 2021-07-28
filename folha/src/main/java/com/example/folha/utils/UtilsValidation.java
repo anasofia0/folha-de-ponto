@@ -21,7 +21,7 @@ public class UtilsValidation {
         validaHorarioJornadaTrabalho(momento);
     }
 
-    public static void validaFormatoHorario(Momento momento) throws ApiRequestException {
+    public static void validaFormatoHorario(Momento momento) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         try {
             formatter.parse(momento.getDataHora());

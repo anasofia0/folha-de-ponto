@@ -24,13 +24,14 @@ public class BatidasService {
         this.batidasRepository = batidasRepository;
     }
 
-    public void criarMomento(Momento momento) {
+    public void criarMomento(MomentoDTO momentoDTO) {
+        Momento momento = toEntity(momentoDTO);
         UtilsValidation.validaDados(momento);
         validaQuantidadeDeHorarios(momento);
         validaHorarioJaRegistrado(momento);
         validaOrdemHorario(momento);
         validaMinimoHorarioAlmoco(momento);
-        this.batidasRepository.save(momento);
+        this.batidasRepository.save(toEntity(momentoDTO));
     }
 
     public Momento toEntity(MomentoDTO momentoDTO){
@@ -44,7 +45,6 @@ public class BatidasService {
         if(existeDataHora){
             throw new ApiRequestConflict("Horário já registrado");
         }
-
     }
 
     public void validaQuantidadeDeHorarios(Momento momento){

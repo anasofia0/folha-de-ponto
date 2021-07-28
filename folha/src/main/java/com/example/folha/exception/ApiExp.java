@@ -1,9 +1,9 @@
 package com.example.folha.exception;
 
-public class ApiException {
+public class ApiExp {
     private final String mensagem;
 
-    public ApiException(String mensagem) {
+    public ApiExp(String mensagem) {
         this.mensagem = mensagem;
     }
 

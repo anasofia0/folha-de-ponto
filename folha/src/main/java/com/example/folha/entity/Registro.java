@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 @Entity
 public class Registro implements Serializable {
@@ -17,8 +16,6 @@ public class Registro implements Serializable {
     private Long id;
 
     private LocalDate dia;
-//    private String[] horariosa;
-//    private ArrayList<String> horariosb;
 
     public Long getId() {
         return id;

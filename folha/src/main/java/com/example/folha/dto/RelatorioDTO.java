@@ -1,22 +1,20 @@
 package com.example.folha.dto;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 
 public class RelatorioDTO {
-
-    private Long id;
-
+    
     private String mes;
     private String horasTrabalhadasMes;
     private String horasExcedentesMes;
     private String horasDevidasMes;
-    private HashMap<Integer, ArrayList<String>> registroDiaHorariosMes;
-    private HashMap<String, String> alocacaoProjetoTempoMes;
+    private Map<Integer, ArrayList<String>> registroDiaHorariosMes;
+    private Map<String, String> alocacaoProjetoTempoMes;
 
 
     public RelatorioDTO(String mes, String horasTrabalhadasMes, String horasExcedentesMes, String horasDevidasMes,
-                        HashMap<Integer, ArrayList<String>> registroDiaHorariosMes, HashMap<String, String> alocacaoProjetoTempoMes) {
+                        Map<Integer, ArrayList<String>> registroDiaHorariosMes, Map<String, String> alocacaoProjetoTempoMes) {
         this.mes = mes;
         this.horasTrabalhadasMes = horasTrabalhadasMes;
         this.horasExcedentesMes = horasExcedentesMes;
@@ -57,19 +55,19 @@ public class RelatorioDTO {
         this.horasDevidasMes = horasDevidasMes;
     }
 
-    public HashMap<Integer, ArrayList<String>> getRegistroDiaHorariosMes() {
+    public Map<Integer, ArrayList<String>> getRegistroDiaHorariosMes() {
         return registroDiaHorariosMes;
     }
 
-    public void setRegistroDiaHorariosMes(HashMap<Integer, ArrayList<String>> registroDiaHorariosMes) {
+    public void setRegistroDiaHorariosMes(Map<Integer, ArrayList<String>> registroDiaHorariosMes) {
         this.registroDiaHorariosMes = registroDiaHorariosMes;
     }
 
-    public HashMap<String, String> getAlocacaoProjetoTempoMes() {
+    public Map<String, String> getAlocacaoProjetoTempoMes() {
         return alocacaoProjetoTempoMes;
     }
 
-    public void setAlocacaoProjetoTempoMes(HashMap<String, String> alocacaoProjetoTempoMes) {
+    public void setAlocacaoProjetoTempoMes(Map<String, String> alocacaoProjetoTempoMes) {
         this.alocacaoProjetoTempoMes = alocacaoProjetoTempoMes;
     }
 }
