@@ -17,7 +17,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 
 @ExtendWith(MockitoExtension.class)
-public class batidasTeste {
+public class TesteBatidas {
 
     private BatidasService batidasService;
 
@@ -31,7 +31,7 @@ public class batidasTeste {
     }
 
     @Test
-    public void validaHorarioJaregistrado() {
+    public void testValidaHorarioJaregistrado() {
         Momento momento = new Momento();
         momento.setDataHora("2018-08-22T08:00:00");
 

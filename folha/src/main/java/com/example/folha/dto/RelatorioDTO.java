@@ -1,6 +1,6 @@
 package com.example.folha.dto;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class RelatorioDTO {
@@ -9,12 +9,14 @@ public class RelatorioDTO {
     private String horasTrabalhadasMes;
     private String horasExcedentesMes;
     private String horasDevidasMes;
-    private Map<Integer, ArrayList<String>> registroDiaHorariosMes;
+    private Map<Integer, List<String>> registroDiaHorariosMes;
     private Map<String, String> alocacaoProjetoTempoMes;
 
 
-    public RelatorioDTO(String mes, String horasTrabalhadasMes, String horasExcedentesMes, String horasDevidasMes,
-                        Map<Integer, ArrayList<String>> registroDiaHorariosMes, Map<String, String> alocacaoProjetoTempoMes) {
+    public RelatorioDTO(String mes, String horasTrabalhadasMes,
+                        String horasExcedentesMes, String horasDevidasMes,
+                        Map<Integer, List<String>> registroDiaHorariosMes,
+                        Map<String, String> alocacaoProjetoTempoMes) {
         this.mes = mes;
         this.horasTrabalhadasMes = horasTrabalhadasMes;
         this.horasExcedentesMes = horasExcedentesMes;
@@ -55,11 +57,11 @@ public class RelatorioDTO {
         this.horasDevidasMes = horasDevidasMes;
     }
 
-    public Map<Integer, ArrayList<String>> getRegistroDiaHorariosMes() {
+    public Map<Integer, List<String>> getRegistroDiaHorariosMes() {
         return registroDiaHorariosMes;
     }
 
-    public void setRegistroDiaHorariosMes(Map<Integer, ArrayList<String>> registroDiaHorariosMes) {
+    public void setRegistroDiaHorariosMes(Map<Integer, List<String>> registroDiaHorariosMes) {
         this.registroDiaHorariosMes = registroDiaHorariosMes;
     }
 

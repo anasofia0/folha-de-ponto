@@ -13,12 +13,15 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class BatidasService {
 
     private final BatidasRepository batidasRepository;
+
+    private static final int MAX_HORARIOS_REGISTRADOS = 4;
+    private static final int ULTIMA_POSICAO_STRING_DATA = 10;
+    private static final int UMA_HORA_SEGUNDO = 3600;
 
     public BatidasService(BatidasRepository batidasRepository) {
         this.batidasRepository = batidasRepository;
@@ -50,29 +53,21 @@ public class BatidasService {
     public void validaQuantidadeDeHorarios(Momento momento){
         List<Momento> horariosRegistradosPorDia = horariosRegistradosPorDia(momento);
 
-        if(horariosRegistradosPorDia.size() >= 4){
+        if(horariosRegistradosPorDia.size() >= MAX_HORARIOS_REGISTRADOS){
             throw new ApiRequestForbidden("Apenas 4 horários podem ser registrados por dia");
         }
     }
 
     public List<Momento> horariosRegistradosPorDia(Momento momento){
         List<Momento> listaHorariosJaRegistradosTotal = this.batidasRepository.findAll();
-        String parteData = momento.getDataHora().substring(0, 10);
+        String parteData = momento.getDataHora().substring(0, ULTIMA_POSICAO_STRING_DATA);
         List<Momento> listaHorariosJaregistradosPorDia = new ArrayList<>();
 
-        listaHorariosJaRegistradosTotal.forEach(data -> {
-            if(data.getDataHora().substring(0,10).equals(parteData)){
+        listaHorariosJaRegistradosTotal.forEach((Momento data) -> {
+            if(data.getDataHora().substring(0,ULTIMA_POSICAO_STRING_DATA).equals(parteData)){
                 listaHorariosJaregistradosPorDia.add(data);
             }
         });
-
-         /*   List<Momento> listaHorariosJaregistradosPorDia = listaHorariosJaRegistradosTotal
-                .stream()
-                .filter(a->a.getDataHora().substring(0, 10)
-                .equals(parteData))
-                .collect(Collectors.toList());
-         */
-
         return listaHorariosJaregistradosPorDia;
     }
 
@@ -96,7 +91,7 @@ public class BatidasService {
             Momento ultimoLista = horariosRegistradosPorDia.get(tamanhoLista-1);
             LocalDateTime ultimoListahorario = LocalDateTime.parse(ultimoLista.getDataHora());
             LocalDateTime momentoHorario = LocalDateTime.parse(momento.getDataHora());
-            if(Duration.between(ultimoListahorario, momentoHorario).getSeconds() < 3600){
+            if(Duration.between(ultimoListahorario, momentoHorario).getSeconds() < UMA_HORA_SEGUNDO){
                 throw new ApiRequestForbidden("Deve haver no mínimo 1 hora de almoço");
             }
         }
