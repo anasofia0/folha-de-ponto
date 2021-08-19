@@ -14,7 +14,7 @@ public class Registro implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate dia;
+    private transient LocalDate dia;
 
     public Long getId() {
         return id;

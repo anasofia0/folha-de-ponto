@@ -3,7 +3,7 @@ package com.example.folha.service;
 import com.example.folha.dto.MomentoDTO;
 import com.example.folha.entity.Momento;
 import com.example.folha.exception.ApiRequestConflict;
-import com.example.folha.exception.ApiRequestException;
+import com.example.folha.exception.ApiRequestExcept;
 import com.example.folha.exception.ApiRequestForbidden;
 import com.example.folha.repository.BatidasRepository;
 import com.example.folha.utils.UtilsValidation;
@@ -79,7 +79,7 @@ public class BatidasService {
             LocalDateTime ultimoListahorario = LocalDateTime.parse(ultimoLista.getDataHora());
             LocalDateTime momentoHorario = LocalDateTime.parse(momento.getDataHora());
             if(!momentoHorario.isAfter(ultimoListahorario)){
-                throw new ApiRequestException("Não pode registrar horários anteriores aos já registrados");
+                throw new ApiRequestExcept("Não pode registrar horários anteriores aos já registrados");
             }
         }
     }
