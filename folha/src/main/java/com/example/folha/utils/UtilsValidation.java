@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public final class UtilsValidation {
+import static com.example.folha.utils.Constantes.FIM_EXPEDIENTE;
+import static com.example.folha.utils.Constantes.INICIO_EXPEDIENTE;
 
-    private static final int INICIO_EXPEDIENTE = 7;
-    private static final int FIM_EXPEDIENTE = 22;
+public final class UtilsValidation {
 
     private UtilsValidation() {
 

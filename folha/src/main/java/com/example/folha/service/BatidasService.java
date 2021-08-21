@@ -14,27 +14,30 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.folha.utils.Constantes.MAX_HORARIOS_REGISTRADOS;
+import static com.example.folha.utils.Constantes.ULTIMA_POSICAO_STRING_DATA;
+import static com.example.folha.utils.Constantes.UMA_HORA_SEGUNDO;
+
 @Service
 public class BatidasService {
 
     private final BatidasRepository batidasRepository;
-
-    private static final int MAX_HORARIOS_REGISTRADOS = 4;
-    private static final int ULTIMA_POSICAO_STRING_DATA = 10;
-    private static final int UMA_HORA_SEGUNDO = 3600;
 
     public BatidasService(BatidasRepository batidasRepository) {
         this.batidasRepository = batidasRepository;
     }
 
     public void criarMomento(MomentoDTO momentoDTO) {
+        if(momentoDTO.getDataHora() == null) {
+            throw new ApiRequestExcept("Campo obrigatório não informado");
+        }
         Momento momento = toEntity(momentoDTO);
-        UtilsValidation.validaDados(momento);
-        validaQuantidadeDeHorarios(momento);
-        validaHorarioJaRegistrado(momento);
-        validaOrdemHorario(momento);
-        validaMinimoHorarioAlmoco(momento);
-        this.batidasRepository.save(toEntity(momentoDTO));
+            UtilsValidation.validaDados(momento);
+            validaQuantidadeDeHorarios(momento);
+            validaHorarioJaRegistrado(momento);
+            validaOrdemHorario(momento);
+            validaMinimoHorarioAlmoco(momento);
+            this.batidasRepository.save(toEntity(momentoDTO));
     }
 
     public Momento toEntity(MomentoDTO momentoDTO){
@@ -94,6 +97,12 @@ public class BatidasService {
             if(Duration.between(ultimoListahorario, momentoHorario).getSeconds() < UMA_HORA_SEGUNDO){
                 throw new ApiRequestForbidden("Deve haver no mínimo 1 hora de almoço");
             }
+        }
+    }
+
+    public void validaCampoObrigatorio(MomentoDTO momentoDTO){
+        if(momentoDTO == null){
+            throw new ApiRequestExcept("Campo obrigatório não informado");
         }
     }
 
