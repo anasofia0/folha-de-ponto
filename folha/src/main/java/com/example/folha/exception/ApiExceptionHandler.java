@@ -26,7 +26,7 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler(value = {ApiRequestConflict.class})
-    public ResponseEntity<Object> handleApiRequestForbidden(ApiRequestConflict e){
+    public ResponseEntity<Object> handleApiRequestConflict(ApiRequestConflict e){
         HttpStatus conflict = HttpStatus.CONFLICT;
         ApiExp apiExp = new ApiExp(
                 e.getMessage()
