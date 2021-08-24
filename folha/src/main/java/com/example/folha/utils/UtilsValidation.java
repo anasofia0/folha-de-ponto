@@ -9,9 +9,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static com.example.folha.utils.Constantes.FIM_EXPEDIENTE;
-import static com.example.folha.utils.Constantes.INICIO_EXPEDIENTE;
-
 public final class UtilsValidation {
 
     private UtilsValidation() {
@@ -43,7 +40,8 @@ public final class UtilsValidation {
 
     public static void validaHorarioJornadaTrabalho(Momento momento) {
         LocalDateTime dataHoraFormatado = LocalDateTime.parse(momento.getDataHora());
-        if (dataHoraFormatado.getHour() < INICIO_EXPEDIENTE || dataHoraFormatado.getHour() > FIM_EXPEDIENTE) {
+        if (dataHoraFormatado.getHour() < Constante.INICIO_EXPEDIENTE.getValor() ||
+                dataHoraFormatado.getHour() > Constante.FIM_EXPEDIENTE.getValor()) {
             throw new ApiRequestExcept("Só pode registrar horário entre 7:00 até 22:00. " +
                     "Não trabalhamos de madrugada ou cedo demais!");
         }

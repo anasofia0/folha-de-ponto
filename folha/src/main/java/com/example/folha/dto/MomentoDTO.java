@@ -1,6 +1,10 @@
 package com.example.folha.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class MomentoDTO {
 
     private String dataHora;
@@ -12,5 +16,4 @@ public class MomentoDTO {
     public void setDataHora(String dataHora) {
         this.dataHora = dataHora;
     }
-
 }

@@ -1,10 +1,16 @@
 package com.example.folha.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
 public class AlocacaoDTO {
 
     private String dia;
     private String tempo;
     private String nomeProjeto;
+
 
     public String getDia() {
         return dia;

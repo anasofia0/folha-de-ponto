@@ -85,13 +85,10 @@ public class TesteBatidasService {
 
     @Test
     public void testValidaOrdemHorario() {
-        Momento momento = new Momento(), momentoAnterior = new Momento();
-        momento.setDataHora("2018-08-22T08:00:00");
+        Momento momentoAnterior = new Momento();
         momentoAnterior.setDataHora("2018-08-22T07:00:00");
-        List<Momento> listaMomentos = new ArrayList<>();
-        listaMomentos.add(momento);
 
-        Mockito.when(batidasRepository.findAll()).thenReturn(listaMomentos);
+        Mockito.when(batidasRepository.findAll()).thenReturn(listaMomentos());
         Exception exception = assertThrows(ApiRequestExcept.class, () -> {
             batidasService.validaOrdemHorario(momentoAnterior);
         });

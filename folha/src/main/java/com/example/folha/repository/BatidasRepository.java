@@ -14,7 +14,7 @@ public interface BatidasRepository extends JpaRepository<Momento, Long> {
 
     boolean existsByDataHora(String dataHora);
 
-    @Query("SELECT m.dataHora from Momento m " +
+    @Query("SELECT new com.example.folha.dto.MomentoDTO(m.dataHora) from Momento m " +
             "where m.dataHora like :dataAlocacao")
-    List<Momento> findByDate(@Param("dataAlocacao") String dataAlocacao);
+    List<MomentoDTO> findByDate(@Param("dataAlocacao") String dataAlocacao);
 }
