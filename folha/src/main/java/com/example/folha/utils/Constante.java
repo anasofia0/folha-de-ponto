@@ -6,7 +6,8 @@ public enum Constante {
     FIM_EXPEDIENTE(22),
     MAX_HORARIOS_REGISTRADOS(4),
     ULTIMA_POSICAO_STRING_DATA(10),
-    UMA_HORA_SEGUNDO(3600);
+    UMA_HORA_SEGUNDO(3600),
+    TOTAL_HORAS_POR_MES(40);
 
     private int valor;
 

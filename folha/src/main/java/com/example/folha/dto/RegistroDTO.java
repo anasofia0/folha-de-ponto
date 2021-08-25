@@ -3,21 +3,19 @@ package com.example.folha.dto;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegistroDTO {
-
-    private LocalDate dia;
+    private String dia;
     private List<String> horarios;
 
-    public LocalDate getDia() {
+    public String getDia() {
         return dia;
     }
 
-    public void setDia(LocalDate dia) {
+    public void setDia(String dia) {
         this.dia = dia;
     }
 
@@ -25,4 +23,7 @@ public class RegistroDTO {
         return horarios;
     }
 
+    public void setHorarios(List<String> horarios) {
+        this.horarios = horarios;
+    }
 }

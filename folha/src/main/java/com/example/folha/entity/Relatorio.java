@@ -20,8 +20,6 @@ public class Relatorio implements Serializable {
     private String horasDevidas;
 
     @ManyToOne
-    private Registro registro;
-    @ManyToOne
     private Alocacao alocacao;
 
     public String getMes() {
@@ -54,14 +52,6 @@ public class Relatorio implements Serializable {
 
     public void setHorasDevidas(String horasDevidas) {
         this.horasDevidas = horasDevidas;
-    }
-
-    public Registro getRegistro() {
-        return registro;
-    }
-
-    public void setRegistro(Registro registro) {
-        this.registro = registro;
     }
 
     public Alocacao getAlocacao() {

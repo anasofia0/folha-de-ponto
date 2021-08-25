@@ -46,6 +46,15 @@ public final class UtilsValidation {
                     "Não trabalhamos de madrugada ou cedo demais!");
         }
     }
+
+    public static void validaFormatoDataRelatorio(String mes){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        try {
+            formatter.parse(mes);
+        } catch (DateTimeParseException e) {
+            throw new ApiRequestExcept("Data em formato inválido");
+        }
+    }
 }
 
 

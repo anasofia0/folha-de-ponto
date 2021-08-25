@@ -1,10 +1,11 @@
 package com.example.folha.resource;
 
-import com.example.folha.entity.Alocacao;
+import com.example.folha.dto.RelatorioDTO;
+import com.example.folha.service.RelatorioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,8 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/folhas-de-ponto")
 public class RelatorioResource {
 
-    @PostMapping("/{mes}")
-    public ResponseEntity<Alocacao> criarAlocacao(@PathVariable String mes) {
-        return ResponseEntity.status(HttpStatus.FOUND).build();
+    private final RelatorioService relatorioService;
+
+    public RelatorioResource(RelatorioService relatorioService) {
+        this.relatorioService = relatorioService;
+    }
+
+    @GetMapping("/{mes}")
+    public ResponseEntity<RelatorioDTO> criarRelatorio(@PathVariable(value = "mes", required = true) String mes) {
+        RelatorioDTO relatorioDTO = relatorioService.listarRelatorio(mes);
+        return ResponseEntity.ok(relatorioDTO);
     }
 }
