@@ -7,12 +7,13 @@ import com.example.folha.exception.ApiRequestForbidden;
 import com.example.folha.repository.BatidasRepository;
 import com.example.folha.service.BatidasService;
 import com.example.folha.utils.UtilsValidation;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,21 +21,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
 
-@ExtendWith(MockitoExtension.class)
-public class TesteBatidas {
+@ContextConfiguration(classes = BatidasService.class)
+@ExtendWith(SpringExtension.class)
+public class BatidasTeste {
 
+    @Autowired
     private BatidasService batidasService;
 
-    @Mock
+    @MockBean
     private BatidasRepository batidasRepository;
-
-    @BeforeEach
-    public void setup() {
-        this.batidasRepository = mock(BatidasRepository.class);
-        this.batidasService = new BatidasService(this.batidasRepository);
-    }
 
     @Test
     public void testValidaHorarioJaregistrado() {
