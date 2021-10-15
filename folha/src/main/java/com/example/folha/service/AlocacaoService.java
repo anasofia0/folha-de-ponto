@@ -42,27 +42,37 @@ public class AlocacaoService {
     }
 
     private void verificaQuantidadeHoras(AlocacaoDTO alocacaoDTO) {
-        List<Momento> horariosRegistradosDia = horariosRegistradosDia(alocacaoDTO);
 
-        int horasTrabalhadas = 0;
+        long horasAlocadas = Duration.parse(alocacaoDTO.getTempo()).getSeconds();
+        long horasTrabalhadas = getHorasTrabalhadasDia(alocacaoDTO);
 
-        if (horariosRegistradosDia.size() == MAXIMA_BATIDAS_DIA) {
-            LocalDateTime primeiroMomento = LocalDateTime.parse(horariosRegistradosDia.get(0).getDataHora());
-            LocalDateTime segundoMomento = LocalDateTime.parse(horariosRegistradosDia.get(1).getDataHora());
-            LocalDateTime terceiroMomento = LocalDateTime.parse(horariosRegistradosDia.get(2).getDataHora());
-            LocalDateTime quartoMomento = LocalDateTime.parse(horariosRegistradosDia.get(3).getDataHora());
-
-            horasTrabalhadas += Duration.between(primeiroMomento, segundoMomento).getSeconds();
-            horasTrabalhadas += Duration.between(terceiroMomento, quartoMomento).getSeconds();
-        }
-
-        LocalDateTime horasAlocadas = LocalDateTime.parse(alocacaoDTO.getTempo());
-        int tempoAlocado = horasAlocadas.getHour() * 3600 + horasAlocadas.getMinute() * 60 + horasAlocadas.getSecond();
-
-        if(horasTrabalhadas < tempoAlocado) {
+        if(horasTrabalhadas < horasAlocadas){
             throw new ApiRequestExcept("Não pode alocar tempo maior que o tempo trabalhado no dia");
         }
+    }
 
+    public long getHorasTrabalhadasDia (AlocacaoDTO alocacaoDTO) {
+
+        long horasTrabalhadas = 0;
+
+        List<Momento> horariosRegistradosDia = horariosRegistradosDia(alocacaoDTO);
+
+        if (horariosRegistradosDia.size() == MAXIMA_BATIDAS_DIA) {
+
+            long primeiroMomento = converteTempoParaSegundos(LocalDateTime.parse(horariosRegistradosDia.get(0).getDataHora()));
+            long segundoMomento = converteTempoParaSegundos(LocalDateTime.parse(horariosRegistradosDia.get(1).getDataHora()));
+            long terceiroMomento = converteTempoParaSegundos(LocalDateTime.parse(horariosRegistradosDia.get(2).getDataHora()));
+            long quartoMomento = converteTempoParaSegundos(LocalDateTime.parse(horariosRegistradosDia.get(3).getDataHora()));
+
+            horasTrabalhadas += segundoMomento-primeiroMomento;
+            horasTrabalhadas += quartoMomento-terceiroMomento;
+        }
+
+        return horasTrabalhadas;
+    }
+
+    public long converteTempoParaSegundos (LocalDateTime tempo) {
+        return 3600 * tempo.getHour() + 60 * tempo.getMinute() + tempo.getSecond();
     }
 
     private List<Momento> horariosRegistradosDia(AlocacaoDTO alocacaoDTO) {
